@@ -1,9 +1,12 @@
 <?php
 
 require_once('Okay.php');
+require('Components.php');
 
 class Design extends Okay {
     
+    use Components;
+
     public $smarty;
     public $detect;
     private $allowed_php_functions;
@@ -96,6 +99,8 @@ class Design extends Okay {
         $this->smarty->registerPlugin('function', 'api',        array($this, 'api_plugin'));
         $this->smarty->registerPlugin('modifier', 'first_letter', array($this, 'first_letter_modifier'));
         
+        $this->register_сomponents();
+
         if($this->config->smarty_html_minify) {
             $this->smarty->loadFilter('output', 'trimwhitespace');
         }
